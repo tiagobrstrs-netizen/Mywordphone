@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Monde 🌍</title>
+
+  <!-- Icône dans l'onglet du navigateur -->
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>" />
+
+  <!-- Leaflet CSS : la carte gratuite sans clé -->
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Leaflet Geocoder : pour la barre de recherche (gratuit aussi) -->
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+  <!-- Notre style -->
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- BARRE DU HAUT -->
+
+  <header id="topbar">
+    <span id="site-title">🌍 Mon Monde</span>
+    <div id="topbar-right">
+      <button id="btn-dark" onclick="toggleDark()">🌙</button>
+      <button id="btn-fav" onclick="togglePanel()">❤️ Mes lieux</button>
+    </div>
+  </header>
+
+  <!-- LA CARTE -->
+
+  <div id="map"></div>
+
+  <!-- PANNEAU LISTE DES LIEUX -->
+
+  <div id="panel" class="hidden">
+    <div id="panel-top">
+      <h2>❤️ Mes lieux</h2>
+      <button onclick="togglePanel()">✕</button>
+    </div>
+    <div id="fav-list"></div>
+  </div>
+
+  <!-- POPUP "Ajouter ce lieu ?" -->
+
+  <div id="popup-add" class="hidden">
+    <p>📍 Que veux-tu faire ici ?</p>
+    <div class="popup-btns">
+      <button class="btn-cancel" onclick="closePopup()">Annuler</button>
+      <button class="btn-ok" onclick="openForm()">✚ Ajouter ce lieu</button>
+    </div>
+  </div>
+
+  <!-- FORMULAIRE : remplir les infos -->
+
+  <div id="form-overlay" class="hidden">
+    <div id="form-card">
+      <h3>✨ Nouveau lieu</h3>
+
+```
+  <label>📌 Nom du lieu</label>
+  <input type="text" id="inp-name" placeholder="Ex : Tour Eiffel, Ma plage…" />
+
+  <label>🎵 Chanson associée</label>
+  <input type="text" id="inp-song" placeholder="Ex : La Vie en Rose – Édith Piaf" />
+
+  <label>📸 Photos (optionnel)</label>
+  <input type="file" id="inp-photos" accept="image/*" multiple onchange="previewPhotos()" />
+  <div id="photos-preview"></div>
+
+  <div class="form-btns">
+    <button class="btn-cancel" onclick="closeForm()">Annuler</button>
+    <button class="btn-ok" onclick="savePlace()">💾 Enregistrer</button>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- MODAL : voir un lieu -->
+
+  <div id="modal" class="hidden">
+    <div id="modal-card">
+      <button id="modal-close" onclick="closeModal()">✕</button>
+      <h3 id="modal-name"></h3>
+      <p id="modal-song"></p>
+      <div id="modal-photos"></div>
+      <button class="btn-delete" onclick="deletePlace()">🗑️ Supprimer</button>
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Geocoder JS (barre de recherche) -->
+
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+  <!-- Notre script -->
+
+  <script src="script.js"></script>
+
+</body>
+</html>
